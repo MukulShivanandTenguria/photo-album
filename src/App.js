@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Users from "./Components/Users";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AlbumList from "./Components/AlbumList";
+import ImageList from "./Components/ImageList";
+import Breadcrumbs from "./Components/Breadcrumbs";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Breadcrumbs/>}>
+          <Route index element={<Users />} />
+          <Route path="User/:userId/Albums" element={<AlbumList />} />
+          <Route path="User/:userId/Album/:albumId" element={<ImageList />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
